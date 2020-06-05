@@ -1,0 +1,80 @@
+<div class="container-fluid object-page-header pt-4">
+  <div class="row mb-2">
+    <div class="col">
+      <ng-container *ngIf="showUnsavedChangesModal">
+        <bp-action
+          text="Back to Landing Page"
+          classes="btn btn-text"
+          iconLeft="fa-angle-left"
+          (click)="click"
+        ></bp-action>
+      </ng-container>
+      <ng-container *ngIf="routeToLandingPage">
+        <bp-action
+          text="Back to Landing Page"
+          classes="link-primary"
+          iconLeft="fa-angle-left"
+          routerLink="backLink"
+        ></bp-action>
+      </ng-container>
+    </div>
+  </div>
+  <div class="row mb-4 mb-lg-0">
+    <div class="col-12 col-lg">
+      <ng-container *ngIf="readonly">
+        <h1 class="mb-0">Object Name</h1>
+      </ng-container>
+      <ng-container *ngIf="editable">
+        <label id="objectName" class="sr-only">Object Name</label>
+        <input 
+          type="text" 
+          id="objectName" 
+          class="form-control object-page-header-input" 
+          placeholder="Object Name" 
+        />
+        <div *ngIf="error" class="text-color-warning">
+          <ng-container *ngIf="required || pattern">
+            This is an error message explaining the user-entered object name is missing or invalid
+          </ng-container>
+          <ng-container *ngIf="duplicate">
+            This is an error message explaining the user-entered object name already exists
+          </ng-container>
+        </div>
+      </ng-container>
+      <p class="my-2 mb-lg-4">Object Type</p>
+    </div>
+    <div class="col-12 col-sm col-lg-auto mt-2 mt-lg-0">
+      <label id="objectPageHeaderSelector" class="sr-only">Version</label>
+      <ng-select
+        class="btn-object-page-header"
+        labelForId="objectPageHeaderSelector"
+        [items]="selectorOptions"
+        bindValue="value"
+        bindValue="text"
+        [searchable]="false"
+        [clearable]="false"
+        placeholder="Select an option"
+        (change)="handleSelectionChange($e)"
+        [(ngModel)]="optionSelected"
+      ></ng-select>
+    </div>
+    <div class="col-12 col-sm col-lg-auto mt-2 mt-lg-0">
+      <ng-container *ngIf="!saving">
+        <bp-action
+          text="Save"
+          classes="btn btn-primary btn-block btn-md btn-object-page-header"
+          (click)="click"
+        ></bp-action>
+      </ng-container>
+      <ng-container *ngIf="saving">
+        <bp-action
+          text="Saving"
+          classes="btn btn-primary btn-block btn-md btn-object-page-header"
+          iconRight="fa-spinner fa-spin"
+          [isDisabled]="true"
+          (click)="click"
+        ></bp-action>
+      </ng-container>
+    </div>
+  </div>
+</div>

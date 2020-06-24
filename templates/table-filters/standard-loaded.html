@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-12 col-lg">
+    <div class="row">
+      <div class="col-sm-6 col-xl-3">
+        <bp-search
+          label="Search"
+          placeholder="Search"
+          [isSearching]="isSearching"
+          (search)="handleSearch($event)"
+          (clearSearch)="handleClearSearch($event)"
+        ></bp-search>
+      </div>
+      <div class="col-sm-6 col-xl-3">
+        <div class="form-group">
+          <label id="dateFilter">Date Range</label>
+          <ng-select
+            labelForId="dateFilter"
+            [items]="dateOptions"
+            bindLabel="text"
+            placeholder="Select date range"
+            [clearable]="false"
+            [searchable]="false"
+          >
+            <ng-template
+              ng-option-tmp
+              let-item="item"
+              let-item$="item$"
+              let-index="index"
+            >
+              {{ item.text }}
+              <div class="option-text-secondary">
+                {{ item.range }}
+              </div>
+            </ng-template>
+          </ng-select>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xl-3">
+        <div class="form-group">
+          <bp-multi-select
+            label="Filter by Type"
+            [optionItems]="optionItems"
+            bindLabel="label"
+            bindValue="value"
+            placeholder="Select types"
+          ></bp-multi-select>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xl-3">
+        <div class="form-group">
+          <bp-multi-select
+            label="Filter by Status"
+            [optionItems]="optionStatuses"
+            bindLabel="label"
+            bindValue="value"
+            placeholder="Select statuses"
+          >
+            <ng-template ng-option-tmp let-item="item">
+              <div class="status-indicator text-wrap">
+                <span class="status-icon {{ item.value }}"></span>
+                {{ item.label }}
+              </div>
+            </ng-template>
+          </bp-multi-select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-auto ml-lg-auto mb-4 mt-lg-4">
+    <bp-toggle
+      toggleGroupName="toggle-buttons"
+      [toggles]="toggleButtons"
+    ></bp-toggle>
+  </div>
+</div>

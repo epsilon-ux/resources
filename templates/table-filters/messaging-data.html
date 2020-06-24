@@ -1,0 +1,111 @@
+<div class="row">
+  <div class="col-12 col-lg">
+    <div class="row">
+      <div class="col-sm-6 col-xl-3">
+        <bp-search
+          label="Search"
+          placeholder="Search"
+          [isSearching]="isSearching"
+          (search)="handleSearch($event)"
+          (clearSearch)="handleClearSearch($event)"
+        ></bp-search>
+      </div>
+      <div class="col-sm-6 col-xl-3">
+        <div class="form-group">
+          <label id="dateFilter">Date Range</label>
+          <ng-select
+            labelForId="dateFilter"
+            [items]="dateOptions"
+            bindLabel="text"
+            placeholder="Select a date range"
+            [clearable]="false"
+            [searchable]="false"
+            [(ngModel)]="selectedDate"
+          >
+            <ng-template
+              ng-option-tmp
+              let-item="item"
+              let-item$="item$"
+              let-index="index"
+            >
+              {{ item.text }}
+              <div class="option-text-secondary">
+                {{ item.range }}
+              </div>
+            </ng-template>
+          </ng-select>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xl-3">
+        <div class="form-group">
+          <bp-multi-select
+            label="Filter by Type"
+            [optionItems]="optionItems"
+            bindLabel="label"
+            bindValue="value"
+            placeholder="Select types"
+          ></bp-multi-select>
+        </div>
+      </div>
+      <div class="col-12 col-md-auto align-self-center">
+        <bp-action
+          text="View Auto-Refresh Segments"
+          classes="btn btn-text mb-3 my-md-2"
+          (click)="(click)"
+        ></bp-action>
+      </div>
+    </div>
+  </div>
+  <div class="col-auto ml-lg-auto mb-4 mt-lg-4">
+    <bp-toggle
+      toggleGroupName="toggle-current-archive"
+      [toggles]="currentArchiveToggles"
+    ></bp-toggle>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <bp-ribbon
+      class="d-block my-3 mt-xl-0"
+      classes="ribbon ribbon-info"
+      text="# items selected"
+    >
+      <div ribbon-content class="ml-md-auto pl-md-3">
+        <div class="row">
+          <div class="col-auto mt-2 mt-md-0">
+            <bp-action
+              text="Copy"
+              classes="btn btn-sm btn-outline-primary"
+              ariaLabel="Copy selected items"
+              (click)="click"
+            ></bp-action>
+          </div>
+          <div class="col-auto mt-2 mt-md-0 pl-0">
+            <bp-action
+              text="Move"
+              classes="btn btn-sm btn-outline-primary"
+              ariaLabel="Move selected items"
+              (click)="click"
+            ></bp-action>
+          </div>
+          <div class="col-auto mt-2 mt-md-0 pl-0">
+            <bp-action
+              text="Archive"
+              classes="btn btn-sm btn-outline-primary"
+              ariaLabel="Archive selected items"
+              (click)="click"
+            ></bp-action>
+          </div>
+          <div class="col-auto mt-2 mt-md-0 pl-sm-0">
+            <bp-action
+              text="Trash"
+              classes="btn btn-sm btn-outline-primary"
+              ariaLabel="Move selected items to trash"
+              (click)="click"
+            ></bp-action>
+          </div>
+        </div>
+      </div>
+    </bp-ribbon>
+  </div>
+</div>

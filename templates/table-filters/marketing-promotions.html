@@ -1,0 +1,85 @@
+<div class="row">
+  <div class="col-12 col-lg">
+    <div class="row">
+      <div class="col col-sm-6 col-xl-3">
+        <bp-search
+          label="Search"
+          placeholder="Search"
+          [isSearching]="isSearching"
+          (search)="handleSearch($event)"
+          (clearSearch)="handleClearSearch($event)"
+        ></bp-search>
+      </div>
+      <div class="col-auto align-self-center">
+        <button 
+          type="button" 
+          class="btn btn-text" 
+          data-toggle="collapse" 
+          data-target="#collapseFilters" 
+          aria-expanded="true" 
+          aria-controls="collapseFilters"
+        >
+          <i class="fas fa-filter icon-left" aria-hidden="true"></i>Filter
+        </button>
+      </div>
+    </div>
+    <div class="collapse show" id="collapseFilters">
+      <div class="row">
+        <div class="col-sm-6 col-xl-3">
+          <div class="form-group">
+            <bp-multi-select
+              label="Filter by Type"
+              [optionItems]="optionItems"
+              bindLabel="label"
+              bindValue="value"
+              placeholder="Select types"
+            ></bp-multi-select>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="form-group">
+            <bp-multi-select
+              label="Filter by Status"
+              [optionItems]="optionStatuses"
+              bindLabel="label"
+              bindValue="value"
+              placeholder="Select statuses"
+            >
+              <ng-template
+                ng-option-tmp
+                let-item="item"
+              >
+                <div class="status-indicator text-wrap">
+                  <span class="status-icon {{ item.value }}"></span>
+                  {{ item.label }}
+                </div>
+              </ng-template>
+            </bp-multi-select>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="form-group">
+            <bp-multi-select
+              label="Filter by Channel"
+              [optionItems]="optionItems"
+              bindLabel="label"
+              bindValue="value"
+              placeholder="Select channels"
+            ></bp-multi-select>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="form-group">
+            <bp-multi-select
+              label="Filter by Audience"
+              [optionItems]="optionItems"
+              bindLabel="label"
+              bindValue="value"
+              placeholder="Select audiences"
+            ></bp-multi-select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

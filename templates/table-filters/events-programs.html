@@ -1,0 +1,95 @@
+<div class="row">
+  <div class="col-12 col-lg">
+    <div class="row">
+      <div class="col col-sm-6 col-xl-3">
+        <bp-search
+          label="Search"
+          placeholder="Search"
+          [isSearching]="isSearching"
+          (search)="handleSearch($event)"
+          (clearSearch)="handleClearSearch($event)"
+        ></bp-search>
+      </div>
+      <div class="col-auto align-self-center">
+        <button 
+          type="button" 
+          class="btn btn-text" 
+          data-toggle="collapse" 
+          data-target="#collapseFilters" 
+          aria-expanded="true" 
+          aria-controls="collapseFilters"
+        >
+          <i class="fas fa-filter icon-left" aria-hidden="true"></i>Filter
+        </button>
+      </div>
+    </div>
+    <div class="collapse show" id="collapseFilters">
+      <div class="row">
+        <div *ngIf="listView" class="col-sm-6 col-xl-3">
+          <div class="form-group">
+            <label id="sortBy">Sort by</label>
+            <ng-select
+              labelForId="sortBy"
+              [items]="sortByOptions"
+              bindLabel="text"
+              [clearable]="false"
+              [searchable]="false"
+              [(ngModel)]="selectedSortOption"
+            ></ng-select>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="form-group">
+            <bp-multi-select
+              label="Filter by Action Destination"
+              [optionItems]="optionItems"
+              bindLabel="label"
+              bindValue="value"
+              placeholder="Select action destinations"
+            ></bp-multi-select>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="form-group">
+            <bp-multi-select
+              label="Filter by Business Unit"
+              [optionItems]="optionItems"
+              bindLabel="label"
+              bindValue="value"
+              placeholder="Select business units"
+            ></bp-multi-select>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="form-group">
+            <bp-multi-select
+              label="Filter by Company"
+              [optionItems]="optionItems"
+              bindLabel="label"
+              bindValue="value"
+              placeholder="Select companies"
+            ></bp-multi-select>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="form-group">
+            <bp-multi-select
+              label="Filter by Event Source Provider"
+              [optionItems]="optionItems"
+              bindLabel="label"
+              bindValue="value"
+              placeholder="Select event source providers"
+            ></bp-multi-select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-auto ml-lg-auto mb-4 mt-lg-4">
+    <bp-toggle
+      toggleGroupName="toggle-view"
+      [toggles]="viewToggles"
+      (change)="toggleView($event)"
+    ></bp-toggle>
+  </div>
+</div>

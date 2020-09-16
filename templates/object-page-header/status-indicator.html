@@ -1,0 +1,72 @@
+<div class="container-fluid object-page-header pt-4">
+  <div class="row mb-2">
+    <div class="col">
+      <ng-container *ngIf="isRouteToLandingPage">
+        <bp-action
+          text="Back to Landing Page"
+          classes="link-primary"
+          iconLeft="fa-angle-left"
+          [routerLink]="backLink"
+        ></bp-action>
+      </ng-container>
+      <ng-container *ngIf="!isRouteToLandingPage">
+        <bp-action
+          text="Back to Landing Page"
+          classes="btn btn-text"
+          iconLeft="fa-angle-left"
+          (click)="showUnsavedChangesModal()"
+        ></bp-action>
+      </ng-container>
+    </div>
+  </div>
+  <div class="row mb-4 mb-lg-0">
+    <div class="col-12 col-lg">
+      <ng-container *ngIf="isEditable">
+        <label id="objectName" class="sr-only">Object Name</label>
+        <input 
+          type="text" 
+          id="objectName" 
+          class="form-control object-page-header-input" 
+          placeholder="Object Name" 
+        />
+        <div *ngIf="error" class="text-color-warning">
+          <ng-container *ngIf="required || pattern">
+            This is an error message explaining the user-entered object name is missing or invalid
+          </ng-container>
+          <ng-container *ngIf="duplicate">
+            This is an error message explaining the user-entered object name already exists
+          </ng-container>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!isEditable">
+        <h1 class="mb-0">Object Name</h1>
+      </ng-container>
+      <p class="my-2 mb-lg-4 d-flex">
+        Object Type
+        <bp-status-indicator
+          class="d-inline ml-sm border-left border-color-primary pl-sm"
+          status="incomplete-primary"
+          statusText="Incomplete Primary"
+        ></bp-status-indicator>
+      </p>
+    </div>
+    <div class="col-12 col-sm col-lg-auto mt-2 mt-lg-0">
+      <ng-container *ngIf="isSaving">
+        <bp-action
+          text="Saving"
+          classes="btn btn-primary btn-block btn-md btn-object-page-header"
+          iconRight="fa-spinner fa-spin"
+          [isDisabled]="true"
+          (click)="click"
+        ></bp-action>
+      </ng-container>
+      <ng-container *ngIf="!isSaving">
+        <bp-action
+          text="Save"
+          classes="btn btn-primary btn-block btn-md btn-object-page-header"
+          (click)="click"
+        ></bp-action>
+      </ng-container>
+    </div>
+  </div>
+</div>
